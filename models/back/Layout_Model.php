@@ -210,6 +210,22 @@ class Layout_Model
 			return false;
 		}
 	}
+	
+	function updateSlider($data)
+	{
+		try {
+			$query = 'UPDATE sliders SET title_slider = ?, content_slider = ?, url_slider = ? WHERE slider_id = ?';
+			
+			$prep = $this->db->prepare($query);
+			
+			$prep->bind_param('sssi', $data['sliderTitle'], $data['sliderContent'], $data['sliderUrl'], $data['sliderId']);
+			
+			return $prep->execute();
+			
+		} catch (Exception $e) {
+			return false;
+		}
+	}
 }
 
 

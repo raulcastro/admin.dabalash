@@ -28,6 +28,13 @@ $(function(){
 		});
 	}
 	
+	if ( $('.update-slider').length ) { 
+		$('.update-slider').click(function(){
+			updateSlider(this);
+			return false;
+		});
+	}
+	
 	var storeId = 0;
 	
 	if ( $('#storeId').length ) { 
@@ -215,3 +222,49 @@ function deleteSlider(node)
 	        }
 	    });
 }
+
+function updateSlider(node)
+{
+	var sliderId 		= $(node).attr('slider-id');
+	var sliderTitle 	= $('#title-'+sliderId).val();
+	var sliderContent	= $('#content-'+sliderId).val();
+	var sliderUrl 		= $('#url-'+sliderId).val();
+	
+	$.ajax({
+	    type: "POST",
+	    url: "/ajax/stores.php",
+	    data: {
+	    	sliderId:		sliderId,
+	    	sliderTitle: 	sliderTitle,
+	    	sliderContent:	sliderContent,
+	    	sliderUrl: 		sliderUrl,
+	    	opt:			'6'
+	    },
+	    success:
+	        function(info)
+	        {
+		    	if (info != '0')
+	        	{
+		    		alert("Updated!");
+	        	}
+	        	else
+				{
+				}
+	        }
+	    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

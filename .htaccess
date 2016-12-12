@@ -37,7 +37,7 @@ RewriteRule ^reports/$ 						/reports.php?section=16
 RewriteRule ^reports/from/([A-Za-z0-9-]+)/$ 	/reports.php?from=$1&section=16
 RewriteRule ^settings/$ 					/settings.php?section=16
 RewriteRule ^add-store/$ 					/add-store.php?section=16
-RewriteRule ^store/([0-9]+)/([A-Za-z0-9-]+)/$ 	/store.php?storeId=$1&section=6
+RewriteRule ^slider/([0-9]+)/([A-Za-z0-9-]+)/$ 	/store.php?storeId=$1&section=6
 RewriteRule ^owners/$ 						/members.php?section=6
 RewriteRule ^edit-inventory-category/([0-9]+)/$ 		/edit-inventory-category.php?categoryId=$1&section=6
 RewriteRule ^rooms/$ 						/rooms.php?section=6

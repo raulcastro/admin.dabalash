@@ -745,6 +745,8 @@ class Layout_View
     {
     	ob_start();
     	?>
+    	<input type="hidden" id="storeId" value="<?php echo $this->data['storeInfo']['store_id']; ?>">
+    	
     	<div class="row">
 			<div class="col-md-12">
 				<!-- Widget: user widget style 1 -->
@@ -771,7 +773,7 @@ class Layout_View
 							<div class="row">
 								
 								<div class="col-sm-12">
-									<p>Slider size: 1920 * 1080 px</p>
+									<p>Slider size: 1920 * 670 px</p>
 									<div class="col-sm-6" id="uploadSliders">
 										Browse
 									</div>
@@ -785,12 +787,35 @@ class Layout_View
 								foreach ($this->data['sliders'] as $slider)
 								{
 									?>
-								<div class="col-md-2 slider">
+								<div class="col-md-3 col-lg-5 slider">
 									<div class="marker-img">
-										<img src="/images/sliders/medium/<?php echo $slider['slider']; ?>" />
+										<img src="/images/sliders/medium/<?php echo $slider['slider']; ?>" class="img-responsive" />
 									</div>
-									<div class="delete">
-										<a href="javascript: void(0);" slider-id="<?php echo $slider['slider_id']; ?>" class="delete-slider">delete</a>
+									<div class="box-body">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Titulo</label>
+											<input type="text" class="form-control" id="title-<?php echo $slider['slider_id']; ?>" placeholder="titulo ..." value="<?php echo $slider['title_slider']; ?>" >
+										</div>
+										
+										<div class="form-group">
+											<label for="exampleInputEmail1">Contenido</label>
+											<input type="text" class="form-control" id="content-<?php echo $slider['slider_id']; ?>" placeholder="contenido ..." value="<?php echo $slider['content_slider']; ?>" >
+										</div>
+										
+										<div class="form-group">
+											<label for="exampleInputEmail1">URL</label>
+											<input type="text" class="form-control" id="url-<?php echo $slider['slider_id']; ?>" placeholder="url ..." value="<?php echo $slider['url_slider']; ?>" >
+										</div>
+										
+				                        <div class="box-footer">
+											<div class="row">
+												<div class="col-md-12">
+													<button type="submit" class="btn btn-danger pull-right btn-sm delete-slider" slider-id="<?php echo $slider['slider_id']; ?>">Delete</button>
+													<button type="submit" class="btn btn-info pull-right btn-sm update-slider" slider-id="<?php echo $slider['slider_id']; ?>">Update</button>
+												</div>
+											</div>
+						                    
+					                  	</div>
 									</div>
 								</div>
 									<?php
