@@ -787,7 +787,7 @@ class Layout_View
 								foreach ($this->data['sliders'] as $slider)
 								{
 									?>
-								<div class="col-md-3 col-lg-5 slider">
+								<div class="col-lg-5 col-md-12 slider">
 									<div class="marker-img">
 										<img src="/images/sliders/medium/<?php echo $slider['slider']; ?>" class="img-responsive" />
 									</div>

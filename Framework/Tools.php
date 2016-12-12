@@ -514,7 +514,7 @@ class Tools
     	}
     	else
     	{
-    		return false;
+    		return true;
     	}
     }
     

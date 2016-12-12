@@ -189,7 +189,7 @@ class Layout_Model
 		try {
 			$storeId = (int) $storeId;
 			
-			$query = 'SELECT * FROM sliders WHERE store_id = '.$storeId;
+			$query = 'SELECT * FROM sliders WHERE store_id = '.$storeId.' ORDER BY slider_id DESC';
 			
 			return $this->db->getArray($query);
 			

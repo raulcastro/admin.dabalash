@@ -310,12 +310,20 @@
     margin-right: 10px;
 }
 
+#sliderBox {
+	margin-top: 20px!important;
+}
+
+
 .sliders-box .slider {
     margin: 0 10px 20px 0!important;
-    border: 1px solid #ccc;
 }
 
 .marker-img {
 	max-height: 140px!important;
 	overflow: hidden;
+}
+
+.update-slider {
+	margin-right: 12px;
 }

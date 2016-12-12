@@ -10,7 +10,7 @@
 	
 	$data 	= $backend->loadBackend('store', $_GET['storeId']);
 // 	var_dump($data);
-	$data['title'] 			= 'Store # '.str_pad($data['storeInfo']['store_id'], 4, 0, STR_PAD_LEFT);
+	$data['title'] 			= 'Idioma ';
 	$data['section'] 		= 'store';
 	$data['icon'] 			= 'fa-book';
 	$data['template-class'] = '';

@@ -95,7 +95,7 @@
 						"LEFT JOIN user_detail d ON u.user_id = d.user_id " .
 						"WHERE ".$this->user." = binary '".$_POST["loginUser"]."' 
 						&& ".$this->password." = SHA1('".$_POST["loginPassword"]."')";
-				
+						echo $query;
 				$type = $this->db->getRow($query);
 				
 				if($type)

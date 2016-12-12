@@ -189,6 +189,13 @@ function getSliders()
 		    				return false;
 		    			});
 		    		}
+		    		
+		    		if ( $('.update-slider').length ) { 
+		    			$('.update-slider').click(function(){
+		    				updateSlider(this);
+		    				return false;
+		    			});
+		    		}
 	        	}
 	        	else
 				{
