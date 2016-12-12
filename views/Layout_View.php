@@ -97,6 +97,10 @@ class Layout_View
 				case 'store':
 					echo self::getStoreHead();
 				break;
+				
+				case 'distribuidores':
+					echo self::getDistribuidoresHead();
+				break;
 			}
 			?>
 		</head>
@@ -146,6 +150,10 @@ class Layout_View
 							case 'profile':
 								echo self :: getProfileContent();
 							break;
+							
+							case 'distribuidores':
+								echo self::getDistribuidoresContent();
+							break;
 
 							default :
 								# code...
@@ -189,6 +197,10 @@ class Layout_View
 				
 				case 'store':
 					echo self::getStoreScripts();
+				break;
+				
+				case 'distribuidores':
+					echo self::getDistribuidoresScripts();
 				break;
 			}
 			?>
@@ -810,8 +822,8 @@ class Layout_View
 				                        <div class="box-footer">
 											<div class="row">
 												<div class="col-md-12">
-													<button type="submit" class="btn btn-danger pull-right btn-sm delete-slider" slider-id="<?php echo $slider['slider_id']; ?>">Delete</button>
-													<button type="submit" class="btn btn-info pull-right btn-sm update-slider" slider-id="<?php echo $slider['slider_id']; ?>">Update</button>
+													<button type="submit" class="btn btn-danger pull-right btn-sm delete-slider" slider-id="<?php echo $slider['slider_id']; ?>">Eliminar</button>
+													<button type="submit" class="btn btn-info pull-right btn-sm update-slider" slider-id="<?php echo $slider['slider_id']; ?>">Guardar</button>
 												</div>
 											</div>
 						                    
@@ -828,6 +840,140 @@ class Layout_View
 				</div><!-- nav-tabs-custom -->
 			</div><!-- /.col -->
 		</div>
+        <?php
+        $content = ob_get_contents();
+        ob_end_clean();
+        return $content;
+    }
+    
+    public function getDistribuidoresHead()
+    {
+    	ob_start();
+    	?>
+    	<script type="text/javascript"></script>
+    	<?php
+    	$head = ob_get_contents();
+    	ob_end_clean();
+    	return $head;
+    }
+    
+    public function getDistribuidoresScripts()
+    {
+    	ob_start();
+    	?>
+    	<script type="text/javascript">
+		</script>
+		<script src="/js/places.js"></script>
+    	<?php
+    	$scripts = ob_get_contents();
+    	ob_end_clean();
+    	return $scripts;
+    }
+    
+    public function getDistribuidoresContent()
+    {
+    	ob_start();
+    	?>
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Custom Tabs (Pulled to the right) -->
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs pull-right">
+						<li class="pull-left header"><i class="fa fa-th"></i>Lugares</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab_3-2">
+							<div class="row sliders-box" >
+								<div class="col-lg-12 col-md-12 slider">
+									<div class="box-body">
+										<div class="form-group">
+											<input type="text" class="form-control" id="placeName" placeholder="Lugar" value="" >
+										</div>
+										
+				                        <div class="box-footer">
+											<div class="row">
+												<div class="col-md-12">
+													<button type="submit" class="btn btn-info pull-right btn-sm" id="addPlace">Añadir</button>
+												</div>
+											</div>
+						                    
+					                  	</div>
+									</div>
+								</div>
+							</div>
+							
+							<?php 
+// 							var_dump($this->data['places']);
+							if ($this->data['places'])
+							{
+								foreach ($this->data['places'] as $place)
+								{
+									?>
+							<div class="row sliders-box">
+								<div class="place-name ">
+									<h3><?php echo $place['place']; ?> / <a href="#" class="delete-place" place-id="<?php echo $place['place_id']; ?>">eliminar</a></h3>
+								</div>
+									
+								<div class="col-lg-3 col-md-12 slider">
+									<div class="box-body">
+										<div class="form-group">
+											<label for="">Titulo</label>
+											<input type="text" class="form-control" placeholder="titulo " value="" id="subTitle-<?php echo $place['place_id']; ?>" >
+										</div>
+										
+										<div class="form-group">
+											<textarea class="form-control" rows="7" placeholder="subsecci&oacute;n " id="subContent-<?php echo $place['place_id']; ?>"></textarea>
+										</div>
+
+				                        <div class="box-footer">
+											<div class="row">
+												<div class="col-md-12">
+													<button type="submit" class="btn btn-info pull-right btn-sm add-sub" place-id="<?php echo $place['place_id']; ?>">Añadir</button>
+												</div>
+											</div>
+					                  	</div>
+									</div>
+								</div>
+								
+								<div class="col-lg-3 col-md-12 slider">
+									<div class="box-body">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Playa del Carmen</label>
+										</div>
+										
+										<div class="form-group">
+											- Jaquie Torres <br>
+											- Gabriela Hernández<br>
+											- Carolina Solis<br>
+											- Pretty Nails (Las Americas)<br>
+											- Style me (Las Americas)<br>
+											- Body Taktik<br>
+											- Fabian Salón Spa<br>
+											- Liliana Gómez<br>
+											- lilianag@dabalashmayoreo.com<br>
+										</div>
+
+				                        <div class="box-footer">
+											<div class="row">
+												<div class="col-md-12">
+													<button type="submit" class="btn btn-danger pull-right btn-xs delete-slider" slider-id="<?php echo $slider['slider_id']; ?>">Eliminar</button>
+												</div>
+											</div>
+					                  	</div>
+									</div>
+								</div>
+								
+						</div><!-- /.tab-pane -->
+						<?php
+								}
+							}
+							?>
+						
+					</div><!-- /.tab-content -->
+				</div><!-- nav-tabs-custom -->
+			</div><!-- /.col -->
+		</div>
+		
         <?php
         $content = ob_get_contents();
         ob_end_clean();

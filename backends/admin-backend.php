@@ -86,6 +86,10 @@ class generalBackend
 				
 			break;
 			
+			case 'places':
+				$data['places'] = $this->model->getPlaces();
+			break;
+			
 			default:
 			break;
 		}

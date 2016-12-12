@@ -42,3 +42,4 @@ RewriteRule ^owners/$ 						/members.php?section=6
 RewriteRule ^edit-inventory-category/([0-9]+)/$ 		/edit-inventory-category.php?categoryId=$1&section=6
 RewriteRule ^rooms/$ 						/rooms.php?section=6
 RewriteRule ^edit-room/([0-9]+)/$ 			/room.php?roomId=$1&section=6
+RewriteRule ^distribuidores/$ 				/distribuidores.php?section=6

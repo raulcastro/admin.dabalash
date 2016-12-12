@@ -226,6 +226,60 @@ class Layout_Model
 			return false;
 		}
 	}
+	
+	function addPlace($data)
+	{
+		try {
+			$query = 'INSERT INTO places(place) VALUES(?)';
+			
+			$prep = $this->db->prepare($query);
+			
+			$prep->bind_param("s", $data['placeName']);
+			
+			return $prep->execute();
+			
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	function getPlaces()
+	{
+		try {
+			$query = 'SELECT * FROM places ORDER BY place_id DESC';
+			return $this->db->getArray($query);
+			
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	function deletePlace($placeId)
+	{
+		try {
+			$placeId = (int) $placeId;
+			
+			$query = 'DELETE FROM places WHERE place_id = '.$placeId;
+			
+			return $this->db->run($query);
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	function addSub($data)
+	{
+		try {
+			$query = 'INSERT INTO subplaces(place_id, place_title, place_content) VALUES(?, ?, ?)';
+			$prep = $this->db->prepare($query);
+				
+			$prep->bind_param("iss", $data['placeId'], $data['subTitle'], $data['subContent']);
+			
+			return $prep->execute();
+		} catch (Exception $e) {
+			return false;
+		}
+	}
 }
 
 
