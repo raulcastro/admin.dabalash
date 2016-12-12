@@ -87,7 +87,28 @@ class generalBackend
 			break;
 			
 			case 'places':
-				$data['places'] = $this->model->getPlaces();
+// 				$data['places'] = $this->model->getPlaces();
+
+				$data['places'] = array();
+				
+				$placesArray 		= $this->model->getPlaces();
+				
+				foreach ($placesArray as $place)
+				{
+					$place['subs'] = $this->model->getSubs($place['place_id']);
+					array_push($data['places'], $place);
+				}
+				
+				
+// 				$data['books'] = array();
+				
+// 				$BooksArray 		= $this->model->getAllBooks();
+				
+// 				foreach ($BooksArray as $book)
+// 				{
+// 					$book['markers'] = $this->model->getMarkersByBookId($book['book_id']);
+// 					array_push($data['books'], $book);
+// 				}
 			break;
 			
 			default:

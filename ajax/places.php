@@ -36,51 +36,44 @@ switch ($_POST['opt'])
 	break;
 	
 	case 4:
-		if ($sliders = $model->getSliders($_POST['storeId']))
-		{
-			foreach ($sliders as $slider)
-			{
-				?>
-			<div class="col-lg-5 col-md-12 slider">
-				<div class="marker-img">
-					<img src="/images/sliders/medium/<?php echo $slider['slider']; ?>" class="img-responsive" />
-				</div>
-				<div class="box-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1">Titulo</label>
-						<input type="text" class="form-control" id="title-<?php echo $slider['slider_id']; ?>" placeholder="titulo ..." value="<?php echo $slider['title_slider']; ?>" >
-					</div>
-					
-					<div class="form-group">
-						<label for="exampleInputEmail1">Contenido</label>
-						<input type="text" class="form-control" id="content-<?php echo $slider['slider_id']; ?>" placeholder="contenido ..." value="<?php echo $slider['content_slider']; ?>" >
-					</div>
-					
-					<div class="form-group">
-						<label for="exampleInputEmail1">URL</label>
-						<input type="text" class="form-control" id="url-<?php echo $slider['slider_id']; ?>" placeholder="url ..." value="<?php echo $slider['url_slider']; ?>" >
-						</div>
-						
-                        <div class="box-footer">
-							<div class="row">
-								<div class="col-md-12">
-									<button type="submit" class="btn btn-danger pull-right btn-sm delete-slider" slider-id="<?php echo $slider['slider_id']; ?>">Delete</button>
-								<button type="submit" class="btn btn-info pull-right btn-sm update-slider" slider-id="<?php echo $slider['slider_id']; ?>">Update</button>
-							</div>
-						</div>
-	                    
-                  	</div>
-				</div>
-			</div>
-				<?php
-			}
-		}
+		if ($model->deleteSub($_POST['subId']))
+			echo 1;
+		else
+			echo 0;
 	break;
 	
 	case 5:
-		if ($model->deleteSlider($_POST['sliderId']))
+		if ($subs = $model->getSubs($_POST['placeId']))
 		{
-			echo 1;
+			if ($subs)
+			{
+				foreach ($subs as $sub)
+				{
+					?>
+			<div class="col-lg-3 col-md-5 sub-item" id="sub-item-<?php echo $sub['subplace_id']; ?>">
+				<div class="box-body">
+					<div class="sub-content-box">
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?php echo $sub['place_title']; ?></label>
+						</div>
+						
+						<div class="form-group">
+							<?php echo nl2br($sub['place_content']); ?>
+							</div>
+						</div>
+                        <div class="box-footer">
+							<div class="row">
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-danger pull-right btn-xs delete-sub" sub-id="<?php echo $sub['subplace_id']; ?>">Eliminar</button>
+							</div>
+						</div>
+                  	</div>
+				</div>
+			</div>
+					<?php
+				}
+					
+			}
 		}
 	break;
 	

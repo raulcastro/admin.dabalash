@@ -21,7 +21,42 @@ $(function(){
 		});
 	}
 	
+	if ( $('.delete-sub').length ) { 
+		$('.delete-sub').click(function(){
+			deleteSub(this);
+			return false;
+		});
+	}
+	
 });
+
+function deleteSub(node)
+{
+	var subId = $(node).attr('sub-id');
+	
+	if (subId)
+	{
+		$.ajax({
+	    type: "POST",
+	    url: "/ajax/places.php",
+	    data: {
+	    	subId: 	subId,
+	    	opt:			'4'
+	    },
+	    success:
+	        function(info)
+	        {
+	        	if (info != '0')
+	        	{
+	        		$('#sub-item-'+subId).remove();
+	        	}
+	        	else
+				{
+				}
+	        }
+	    });
+	}
+}
 
 function addPlace()
 {
@@ -41,10 +76,13 @@ function addPlace()
 	        {
 	        	if (info != '0')
 	        	{
-	        		$('#placeName').val('');
+	        		pathArray 		= $(location).attr('href').split( '/' );
+	        		newURL 			= pathArray[0]+'//'+pathArray[2]+'/distribuidores/';
+	            	window.location = newURL;
 	        	}
 	        	else
 				{
+	        		
 				}
 	        }
 	    });
@@ -70,7 +108,9 @@ function deletePlace(node)
 	        {
 	        	if (info != '0')
 	        	{
-//	        		$('#placeName').val('');
+	        		pathArray 		= $(location).attr('href').split( '/' );
+	        		newURL 			= pathArray[0]+'//'+pathArray[2]+'/distribuidores/';
+	            	window.location = newURL;
 	        	}
 	        	else
 				{
@@ -104,6 +144,42 @@ function addSub(node)
 	        	{
 	        		$('#subTitle-'+placeId).val('');
 	        		$('#subContent-'+placeId).val('');
+	        		
+	        		getSubs(placeId);
+	        	}
+	        	else
+				{
+				}
+	        }
+	    });
+	}
+}
+
+function getSubs(placeId)
+{
+	if (placeId)
+	{
+		$.ajax({
+	    type: "POST",
+	    url: "/ajax/places.php",
+	    data: {
+	    	placeId: 	placeId,
+	    	opt:		'5'
+	    },
+	    success:
+	        function(info)
+	        {
+	        	if (info != '0')
+	        	{
+	        		$('#subBox'+placeId).html('');
+	        		$('#subBox'+placeId).html(info);
+	        		
+	        		if ( $('.delete-sub').length ) { 
+	        			$('.delete-sub').click(function(){
+	        				deleteSub(this);
+	        				return false;
+	        			});
+	        		}
 	        	}
 	        	else
 				{

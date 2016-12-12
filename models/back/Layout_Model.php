@@ -280,6 +280,32 @@ class Layout_Model
 			return false;
 		}
 	}
+	
+	function getSubs($placeId)
+	{
+		try {
+			$placeId = (int) $placeId;
+			
+			$query = 'SELECT * FROM subplaces WHERE place_id = '.$placeId.' ORDER BY subplace_id DESC';
+			
+			return $this->db->getArray($query);
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	function  deleteSub($subId)
+	{
+		try {
+			$query = 'DELETE FROM subplaces WHERE subplace_id = '.$subId;
+			
+			return $this->db->run($query);
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	
 }
 
 

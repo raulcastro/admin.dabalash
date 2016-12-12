@@ -884,7 +884,7 @@ class Layout_View
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab_3-2">
 							<div class="row sliders-box" >
-								<div class="col-lg-12 col-md-12 slider">
+								<div class="col-lg-11 col-md-11 slider">
 									<div class="box-body">
 										<div class="form-group">
 											<input type="text" class="form-control" id="placeName" placeholder="Lugar" value="" >
@@ -913,8 +913,8 @@ class Layout_View
 								<div class="place-name ">
 									<h3><?php echo $place['place']; ?> / <a href="#" class="delete-place" place-id="<?php echo $place['place_id']; ?>">eliminar</a></h3>
 								</div>
-									
-								<div class="col-lg-3 col-md-12 slider">
+								
+								<div class="col-lg-3 col-md-5 slider">
 									<div class="box-body">
 										<div class="form-group">
 											<label for="">Titulo</label>
@@ -935,32 +935,39 @@ class Layout_View
 									</div>
 								</div>
 								
-								<div class="col-lg-3 col-md-12 slider">
-									<div class="box-body">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Playa del Carmen</label>
-										</div>
-										
-										<div class="form-group">
-											- Jaquie Torres <br>
-											- Gabriela Hernández<br>
-											- Carolina Solis<br>
-											- Pretty Nails (Las Americas)<br>
-											- Style me (Las Americas)<br>
-											- Body Taktik<br>
-											- Fabian Salón Spa<br>
-											- Liliana Gómez<br>
-											- lilianag@dabalashmayoreo.com<br>
-										</div>
-
-				                        <div class="box-footer">
-											<div class="row">
-												<div class="col-md-12">
-													<button type="submit" class="btn btn-danger pull-right btn-xs delete-slider" slider-id="<?php echo $slider['slider_id']; ?>">Eliminar</button>
+								<div id="subBox<?php echo $place['place_id']; ?>">
+									<?php 
+									if ($place['subs'])
+									{
+										foreach ($place['subs'] as $sub)
+										{
+											?>
+									<div class="col-lg-3 col-md-5 sub-item" id="sub-item-<?php echo $sub['subplace_id']; ?>">
+										<div class="box-body">
+											<div class="sub-content-box">
+												<div class="form-group">
+													<label for="exampleInputEmail1"><?php echo $sub['place_title']; ?></label>
+												</div>
+												
+												<div class="form-group">
+													<?php echo nl2br($sub['place_content']); ?>
 												</div>
 											</div>
-					                  	</div>
+					                        <div class="box-footer">
+												<div class="row">
+													<div class="col-md-12">
+														<button type="submit" class="btn btn-danger pull-right btn-xs delete-sub" sub-id="<?php echo $sub['subplace_id']; ?>">Eliminar</button>
+													</div>
+												</div>
+						                  	</div>
+										</div>
 									</div>
+											<?php
+											
+										}
+											
+									}
+									?>
 								</div>
 								
 						</div><!-- /.tab-pane -->

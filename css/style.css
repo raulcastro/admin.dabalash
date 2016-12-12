@@ -331,3 +331,12 @@
 .place-name {
 	margin-left: 20px;
 }
+
+.sub-content-box {
+	min-height: 250px;
+}
+
+.sliders-box .sub-item {
+    border: 1px solid #f5f5f5;
+    margin: 0 10px 20px 0!important;
+}
