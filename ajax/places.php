@@ -65,6 +65,7 @@ switch ($_POST['opt'])
 							<div class="row">
 								<div class="col-md-12">
 									<button type="submit" class="btn btn-danger pull-right btn-xs delete-sub" sub-id="<?php echo $sub['subplace_id']; ?>">Eliminar</button>
+									<button type="submit" class="btn btn-info pull-left btn-xs edit-sub" sub-id="<?php echo $sub['subplace_id']; ?>" data-toggle="modal" data-target="#myModal">Editar</button>
 							</div>
 						</div>
                   	</div>
@@ -79,6 +80,31 @@ switch ($_POST['opt'])
 	
 	case 6:
 		if ($model->updateSlider($_POST))
+		{
+			echo 1;
+		}
+	break;
+	
+	case 7:
+		if ($sub = $model->getSubBySubId($_POST['subId']))
+		{
+			?>
+			<input type="hidden" class="form-control"  value="<?php echo $sub['subplace_id']; ?>" id="subEditId" >
+			<input type="hidden" class="form-control"  value="<?php echo $sub['place_id']; ?>" id="subEditPlaceId" >
+			<div class="form-group">
+				<label for="">Titulo</label>
+				<input type="text" class="form-control" placeholder="titulo " value="<?php echo $sub['place_title']; ?>" id="subEditTitle" >
+			</div>
+		
+			<div class="form-group">
+				<textarea class="form-control" rows="7" placeholder="subsecci&oacute;n " id="subEditContent"><?php echo $sub['place_content']; ?></textarea>
+			</div>
+			<?php
+		}
+	break;
+	
+	case 8:
+		if ($model->editSub($_POST))
 		{
 			echo 1;
 		}

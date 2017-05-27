@@ -28,7 +28,88 @@ $(function(){
 		});
 	}
 	
+	if ( $('#editSubBtn').length ) { 
+		$('#editSubBtn').click(function(){
+			editSub(this);
+			return false;
+		});
+	}
+	
+	if ( $('.edit-sub').length ) { 
+		$('.edit-sub').click(function(){
+			getSub(this);
+//			alert($(this).attr('sub-id'));
+//			return false;
+		});
+	}
+	
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#myInput').focus()
+	})
+	
 });
+
+function getSub(node)
+{
+	var subId = $(node).attr('sub-id');
+	
+	if (subId)
+	{
+		$.ajax({
+	    type: "POST",
+	    url: "/ajax/places.php",
+	    data: {
+	    	subId: 	subId,
+	    	opt:	7
+	    },
+	    success:
+	        function(info)
+	        {
+	        	if (info != '0')
+	        	{
+	        		$('#subEditInfo').html(info);
+	        	}
+	        	else
+				{
+				}
+	        }
+	    });
+	}
+}
+
+function editSub(node)
+{
+	var subId = $('#subEditId').val();
+	var placeId = $('#subEditPlaceId').val();
+	var subTitle = $('#subEditTitle').val();
+	var subContent = $('#subEditContent').val();
+	
+	if (subId)
+	{
+		$.ajax({
+	    type: "POST",
+	    url: "/ajax/places.php",
+	    data: {
+	    	subId: 	subId,
+	    	subTitle:	subTitle,
+	    	subContent: 	subContent,
+	    	opt:			8
+	    },
+	    success:
+	        function(info)
+	        {
+	        	if (info == '1')
+	        	{
+	        		getSubs(placeId);
+	        		alert('Guardado!');
+	        	}
+	        	else
+				{
+				}
+	        }
+	    });
+	}
+}
 
 function deleteSub(node)
 {

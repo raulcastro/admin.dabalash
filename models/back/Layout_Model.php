@@ -305,7 +305,30 @@ class Layout_Model
 		}
 	}
 	
+	function getSubBySubId($subId)
+	{
+		try {
+			$query = 'SELECT * FROM subplaces WHERE subplace_id = '.$subId;
+			return $this->db->getRow($query);
+		} catch (Exception $e) {
+			return false;
+		}
+	}
 	
+	function editSub($data)
+	{
+		try {
+			$query = 'UPDATE subplaces SET place_title = ?, place_content = ? WHERE subplace_id = ?';
+			
+			$prep = $this->db->prepare($query);
+			
+			$prep->bind_param("ssi", $data['subTitle'], $data['subContent'], $data['subId']);
+			
+			return $prep->execute();
+		} catch (Exception $e) {
+			return false;
+		}
+	}
 }
 
 
